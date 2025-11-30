@@ -10,7 +10,7 @@
   <main class="container">
     <h1>Kasetli Sürme Cam Balkon — Hesaplama</h1>
 
-    <!-- Hesap formu -->
+    <!-- Hesap formu (müşteri görünümü) -->
     <section class="card">
       <div class="grid2">
         <div>
@@ -143,7 +143,7 @@
         </div>
         <button id="btnAdminLogin" class="btn">Giriş Yap</button>
         <p class="muted">
-          İlk kurulum için varsayılan yönetici: <strong>admin / 3482</strong><br>
+          İlk kurulum varsayılanı: <strong>admin / 3482</strong><br>
           Giriş yaptıktan sonra PIN’i değiştirebilir ve yeni yönetici ekleyebilirsiniz.
         </p>
       </div>
@@ -216,7 +216,11 @@
     </section>
   </main>
 
-  <script src="script.js?v=5"></script>
+  <!-- Firebase compat (kolay kullanım) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
-
