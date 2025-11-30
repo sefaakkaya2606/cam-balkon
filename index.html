@@ -148,56 +148,123 @@
     <!-- Özet (müşteri görünümü) -->
     <div id="ozet" class="ok hide"></div>
 
-    <!-- Yönetici -->
-    <div class="section-title" style="margin-top:18px">Ayarlar</div>
-    <div class="muted">Bu bölüm PIN ile açılır. Varsayılan PIN: 3482</div>
+    <!-- YÖNETİCİ GİRİŞ / AYARLAR -->
+<section id="admin-section" class="card">
+  <h3 class="card-title">Yönetici</h3>
+
+  <!-- Giriş paneli (kullanıcı + PIN) -->
+  <div id="admin-login-box">
     <div class="row">
-      <div>
+      <div class="col">
+        <label for="adminUser">Kullanıcı Adı</label>
+        <input id="adminUser" type="text" placeholder="örn. admin">
+      </div>
+      <div class="col">
         <label for="adminPin">PIN</label>
-        <input id="adminPin" placeholder="örn. 3482">
-      </div>
-      <div style="align-self:end">
-        <button id="pinBtn" class="btn">Giriş</button>
+        <input id="adminPin" type="password" inputmode="numeric" placeholder="örn. 3482">
       </div>
     </div>
-
-    <div id="adminPanel" class="hide">
-      <div class="row">
-        <div>
-          <label>Alüminyum (₺/kg) — Antrasit</label>
-          <input id="pAluAgri" type="number" step="0.01" />
-        </div>
-        <div>
-          <label>Alüminyum (₺/kg) — RALL</label>
-          <input id="pAluRall" type="number" step="0.01" />
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label>İşçilik (₺/m²)</label>
-          <input id="pIscilik" type="number" step="0.01"/>
-        </div>
-        <div>
-          <label>Fire (%)</label>
-          <input id="pFire" type="number" step="0.01"/>
-        </div>
-      </div>
-      <div class="row">
-        <div><label>8 mm Şeffaf (₺/m²)</label><input id="p8Seffaf" type="number" step="0.01"/></div>
-        <div><label>8 mm Füme (₺/m²)</label><input id="p8Fume" type="number" step="0.01"/></div>
-      </div>
-      <div class="row">
-        <div><label>Çift Şeffaf (₺/m²)</label><input id="p20Seffaf" type="number" step="0.01"/></div>
-        <div><label>Çift Füme (₺/m²)</label><input id="p20Fume" type="number" step="0.01"/></div>
-      </div>
-      <div style="margin-top:8px">
-        <button id="kaydetBtn" class="btn">Kaydet</button>
-      </div>
-      <div class="muted" style="margin:8px 0 0">Not: Kesim ve maliyet kırılımları müşteriye gösterilmez.</div>
+    <div class="row">
+      <button id="btnAdminLogin" class="btn btn-primary">Giriş Yap</button>
     </div>
-
+    <p class="hint">
+      İlk kurulum için varsayılan yönetici: <b>admin / 3482</b><br>
+      Giriş yaptıktan sonra PIN’i değiştirip yeni yönetici ekleyebilirsiniz.
+    </p>
   </div>
+
+  <!-- Ayarlar paneli (sadece girişten sonra görünür) -->
+  <div id="admin-panel" class="hidden">
+    <div class="row between">
+      <div><b>Giriş:</b> <span id="whoami"></span></div>
+      <button id="btnLogout" class="btn btn-link">Çıkış</button>
+    </div>
+
+    <hr>
+
+    <h4>Fiyat Ayarları</h4>
+    <div class="row">
+      <div class="col">
+        <label for="priceAluStd">Alüminyum (₺/kg) — Antrasit</label>
+        <input id="priceAluStd" type="number" step="0.01" placeholder="215">
+      </div>
+      <div class="col">
+        <label for="priceAluRall">Alüminyum (₺/kg) — RALL</label>
+        <input id="priceAluRall" type="number" step="0.01" placeholder="270">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="priceLabor">İşçilik (₺/m²)</label>
+        <input id="priceLabor" type="number" step="1" placeholder="500">
+      </div>
+      <div class="col">
+        <label for="wastePct">Fire (%)</label>
+        <input id="wastePct" type="number" step="0.1" placeholder="15">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="price8Clr">8 mm Şeffaf (₺/m²)</label>
+        <input id="price8Clr" type="number" step="1" placeholder="1050">
+      </div>
+      <div class="col">
+        <label for="price8Smoke">8 mm Füme (₺/m²)</label>
+        <input id="price8Smoke" type="number" step="1" placeholder="1150">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="price20Clr">Çift Şeffaf (₺/m²)</label>
+        <input id="price20Clr" type="number" step="1" placeholder="1600">
+      </div>
+      <div class="col">
+        <label for="price20Smoke">Çift Füme (₺/m²)</label>
+        <input id="price20Smoke" type="number" step="1" placeholder="1750">
+      </div>
+    </div>
+
+    <div class="row">
+      <button id="btnSavePrices" class="btn btn-primary">Kaydet</button>
+    </div>
+
+    <hr>
+
+    <h4>Güvenlik</h4>
+    <div class="row">
+      <div class="col">
+        <label for="newPin">PIN Değiştir</label>
+        <input id="newPin" type="password" inputmode="numeric" placeholder="Yeni PIN">
+      </div>
+      <div class="col">
+        <label>&nbsp;</label>
+        <button id="btnChangePin" class="btn">PIN’i Güncelle</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="newAdminUser">Yeni Yönetici Adı</label>
+        <input id="newAdminUser" type="text" placeholder="örn. sefa">
+      </div>
+      <div class="col">
+        <label for="newAdminPin">Yeni Yönetici PIN</label>
+        <input id="newAdminPin" type="password" inputmode="numeric" placeholder="örn. 4321">
+      </div>
+    </div>
+    <div class="row">
+      <button id="btnAddAdmin" class="btn">Yönetici Ekle</button>
+    </div>
+
+    <p class="hint">Not: Kesim ve maliyet kırılımları müşteriye gösterilmez.</p>
+  </div>
+</section>
+
 </div>
 <script src="script.js"></script>
 </body>
 </html>
+
