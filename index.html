@@ -10,7 +10,6 @@
   <main class="container">
     <h1>Kasetli Sürme Cam Balkon — Hesaplama</h1>
 
-    <!-- Hesap formu (müşteri görünümü) -->
     <section class="card">
       <div class="grid2">
         <div>
@@ -26,9 +25,9 @@
           <label>Cam Sayısı</label>
           <select id="camSayisi">
             <option value="" disabled selected>Seçin</option>
-            <option>2</option><option>3</option><option>4</option><option>5</option>
-            <option>6</option><option>7</option><option>8</option><option>9</option>
-            <option>10</option><option>11</option><option>12</option>
+            <option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+            <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option>
+            <option value="10">10</option><option value="11">11</option><option value="12">12</option>
           </select>
         </div>
 
@@ -121,7 +120,7 @@
         </div>
       </div>
 
-      <button id="hesaplaBtn" class="btn primary">Hesapla</button>
+      <button id="hesaplaBtn" class="btn primary" type="button">Hesapla</button>
       <div id="ozet" class="result hidden"></div>
     </section>
 
@@ -141,9 +140,9 @@
             <input id="adminPin" placeholder="örn. 3482" />
           </div>
         </div>
-        <button id="btnAdminLogin" class="btn">Giriş Yap</button>
+        <button id="btnAdminLogin" class="btn" type="button">Giriş Yap</button>
         <p class="muted">
-          İlk kurulum varsayılanı: <strong>admin / 3482</strong><br>
+          İlk kurulum için varsayılan yönetici: <strong>admin / 3482</strong><br>
           Giriş yaptıktan sonra PIN’i değiştirebilir ve yeni yönetici ekleyebilirsiniz.
         </p>
       </div>
@@ -152,7 +151,7 @@
       <div id="admin-panel" class="hidden">
         <div class="toolbar">
           <div>Giriş: <strong id="whoami"></strong></div>
-          <button id="btnLogout" class="btn outline">Çıkış</button>
+          <button id="btnLogout" class="btn outline" type="button">Çıkış</button>
         </div>
 
         <h3>Fiyat Ayarları</h3>
@@ -193,14 +192,14 @@
             <input id="price20Smoke" type="number" step="0.01" />
           </div>
         </div>
-        <button id="btnSavePrices" class="btn">Kaydet</button>
+        <button id="btnSavePrices" class="btn" type="button">Kaydet</button>
 
         <h3>Güvenlik</h3>
         <div class="grid3">
           <div>
             <label>Yeni PIN</label>
             <input id="newPin" placeholder="Yeni PIN" />
-            <button id="btnChangePin" class="btn small">PIN’i Güncelle</button>
+            <button id="btnChangePin" class="btn small" type="button">PIN’i Güncelle</button>
           </div>
           <div>
             <label>Yeni Yönetici — Kullanıcı</label>
@@ -209,22 +208,18 @@
           <div>
             <label>Yeni Yönetici — PIN</label>
             <input id="newAdminPin" placeholder="pin" />
-            <button id="btnAddAdmin" class="btn small">Yönetici Ekle</button>
+            <button id="btnAddAdmin" class="btn small" type="button">Yönetici Ekle</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Firebase compat (kolay kullanım) -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-  <!-- Script -->
+  <!-- Firebase (compat sürüm) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+  <!-- Uygulama -->
   <script src="script.js"></script>
 </body>
 </html>
-
-
