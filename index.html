@@ -1,270 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kasetli Sürme Cam Balkon — Hesaplama</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f4f6fb;margin:0}
-    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
-    .card{background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.06);padding:18px 18px 6px}
-    h1{font-size:22px;margin:0 0 10px}
-    label{display:block;margin:10px 0 6px;font-weight:600}
-    input,select{width:100%;box-sizing:border-box;padding:10px;border-radius:8px;border:1px solid #cfd6e4;background:#fff}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .btn{display:inline-block;background:#2f4bd8;color:#fff;border:none;border-radius:8px;padding:12px 16px;font-weight:700;cursor:pointer}
-    .btn:disabled{opacity:.6;cursor:not-allowed}
-    .muted{color:#6b7280;font-size:12px;margin-top:6px}
-    .ok{background:#ecfdf5;border:1px solid #34d399;color:#065f46;padding:14px;border-radius:10px;margin-top:14px}
-    .hide{display:none}
-    .section-title{background:#2f4bd8;color:#fff;padding:10px 12px;border-radius:8px;margin:12px 0 8px;font-weight:700}
-    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-    .admin-only{display:none}
-    .badge{background:#eef2ff;color:#1e3a8a;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700}
-    .inline{display:flex;gap:10px;align-items:center}
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="wrap">
-  <div class="card">
+  <main class="container">
     <h1>Kasetli Sürme Cam Balkon — Hesaplama</h1>
 
-    <div class="row">
-      <div>
-        <label for="genislik">Genişlik (mm)</label>
-        <input id="genislik" type="number" inputmode="numeric" placeholder="örn. 4000">
-      </div>
-      <div>
-        <label for="yukseklik">Yükseklik (mm)</label>
-        <input id="yukseklik" type="number" inputmode="numeric" placeholder="örn. 2000">
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label for="camSayisi">Cam Sayısı</label>
-        <select id="camSayisi">
-          <option value="">Seçiniz…</option>
-          <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
-          <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-        </select>
-      </div>
-      <div>
-        <label for="camOzelligi">Cam Özelliği (renk dahil)</label>
-        <select id="camOzelligi">
-          <option value="8_seffaf">8 mm — Şeffaf</option>
-          <option value="8_fume">8 mm — Füme</option>
-          <option value="20_seffaf">20 mm (4+12+4) — Şeffaf</option>
-          <option value="20_fume">20 mm (4+12+4) — Füme</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label for="acilim">Açılım Tipi</label>
-        <select id="acilim">
-          <option value="yandan">Yandan Açılır</option>
-          <option value="ortadan">Ortadan Açılır</option>
-        </select>
-        <div class="muted" id="acilimUyari"></div>
-      </div>
-      <div>
-        <label for="ray">Ray Sistemi</label>
-        <select id="ray">
-          <option value="esikli">Eşikli</option>
-          <option value="esiksiz">Eşiksiz</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <label for="profilRengi">Profil Rengi</label>
-        <select id="profilRengi">
-          <option value="agri">A. Gri (antrasit)</option>
-          <option value="rall">RALL</option>
-        </select>
-      </div>
-      <div class="inline" style="margin-top:32px">
-        <span class="badge" id="aktifAluFiyati">Alüminyum: 215 ₺/kg</span>
-      </div>
-    </div>
-
-    <!-- Kilit alanları -->
-    <div id="kilitYandan">
-      <div class="section-title">Kilit Seçimi (Yandan)</div>
-      <div class="row">
+    <!-- Hesap formu -->
+    <section class="card">
+      <div class="grid2">
         <div>
-          <label for="kilitSag">Sağ Kilit</label>
-          <select id="kilitSag">
-            <option>Klips Kol</option>
-            <option>Multi Kilit</option>
-            <option>Anahtarlı Kilit</option>
-            <option>İspanyolet Kol</option>
-          </select>
+          <label>Genişlik (mm)</label>
+          <input id="genislik" type="number" placeholder="örn. 4000" />
         </div>
         <div>
-          <label for="kilitSol">Sol Kilit</label>
-          <select id="kilitSol">
-            <option>Klips Kol</option>
-            <option>Multi Kilit</option>
-            <option>Anahtarlı Kilit</option>
-            <option>İspanyolet Kol</option>
-          </select>
+          <label>Yükseklik (mm)</label>
+          <input id="yukseklik" type="number" placeholder="örn. 2000" />
         </div>
-      </div>
-    </div>
 
-    <div id="kilitOrtadan" class="hide">
-      <div class="section-title">Kilit Seçimi (Ortadan)</div>
-      <div class="grid-3">
         <div>
-          <label for="kilitSagO">Sağ Kilit</label>
-          <select id="kilitSagO">
-            <option>Klips Kol</option><option>Multi Kilit</option><option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+          <label>Cam Sayısı</label>
+          <select id="camSayisi">
+            <option value="" disabled selected>Seçin</option>
+            <option>2</option><option>3</option><option>4</option><option>5</option>
+            <option>6</option><option>7</option><option>8</option><option>9</option>
+            <option>10</option><option>11</option><option>12</option>
           </select>
         </div>
+
         <div>
-          <label for="kilitSolO">Sol Kilit</label>
-          <select id="kilitSolO">
-            <option>Klips Kol</option><option>Multi Kilit</option><option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+          <label>Cam Özelliği (renk dahil)</label>
+          <select id="camOzelligi">
+            <option value="8_seffaf">8 mm — Şeffaf</option>
+            <option value="8_fume">8 mm — Füme</option>
+            <option value="20_seffaf">20 mm (4+12+4) — Şeffaf</option>
+            <option value="20_fume">20 mm (4+12+4) — Füme</option>
           </select>
         </div>
+
         <div>
-          <label for="kilitOrtaO">Orta Kilit</label>
-          <select id="kilitOrtaO">
-            <option>Klips Kol</option><option>Multi Kilit</option><option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+          <label>Açılım Tipi</label>
+          <select id="acilim">
+            <option value="yandan" selected>Yandan Açılır</option>
+            <option value="ortadan">Ortadan Açılır</option>
+          </select>
+          <div id="acilimUyari" class="muted"></div>
+        </div>
+
+        <div>
+          <label>Ray Sistemi</label>
+          <select id="ray">
+            <option value="esikli" selected>Eşikli</option>
+            <option value="esiksiz">Eşiksiz</option>
           </select>
         </div>
+
+        <div>
+          <label>Profil Rengi</label>
+          <select id="profilRengi">
+            <option value="agri" selected>A. Gri (antrasit)</option>
+            <option value="rall">RALL</option>
+          </select>
+          <div id="aktifAluFiyati" class="badge"></div>
+        </div>
       </div>
-    </div>
 
-    <div style="margin:16px 0">
-      <button id="hesaplaBtn" class="btn" style="width:100%">Hesapla</button>
-    </div>
-
-    <!-- Özet (müşteri görünümü) -->
-    <div id="ozet" class="ok hide"></div>
-
-    <!-- YÖNETİCİ GİRİŞ / AYARLAR -->
-<section id="admin-section" class="card">
-  <h3 class="card-title">Yönetici</h3>
-
-  <!-- Giriş paneli (kullanıcı + PIN) -->
-  <div id="admin-login-box">
-    <div class="row">
-      <div class="col">
-        <label for="adminUser">Kullanıcı Adı</label>
-        <input id="adminUser" type="text" placeholder="örn. admin">
+      <!-- Kilit alanları -->
+      <div id="kilitYandan" class="fieldset">
+        <div class="legend">Kilit Seçimi (Yandan)</div>
+        <div class="grid2">
+          <div>
+            <label>Sağ Kilit</label>
+            <select id="kilitSag">
+              <option>Klips Kol</option>
+              <option>Multi Kilit</option>
+              <option>Anahtarlı Kilit</option>
+              <option>İspanyolet Kol</option>
+            </select>
+          </div>
+          <div>
+            <label>Sol Kilit</label>
+            <select id="kilitSol">
+              <option>Klips Kol</option>
+              <option>Multi Kilit</option>
+              <option>Anahtarlı Kilit</option>
+              <option>İspanyolet Kol</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <label for="adminPin">PIN</label>
-        <input id="adminPin" type="password" inputmode="numeric" placeholder="örn. 3482">
-      </div>
-    </div>
-    <div class="row">
-      <button id="btnAdminLogin" class="btn btn-primary">Giriş Yap</button>
-    </div>
-    <p class="hint">
-      İlk kurulum için varsayılan yönetici: <b>admin / 3482</b><br>
-      Giriş yaptıktan sonra PIN’i değiştirip yeni yönetici ekleyebilirsiniz.
-    </p>
-  </div>
 
-  <!-- Ayarlar paneli (sadece girişten sonra görünür) -->
-  <div id="admin-panel" class="hidden">
-    <div class="row between">
-      <div><b>Giriş:</b> <span id="whoami"></span></div>
-      <button id="btnLogout" class="btn btn-link">Çıkış</button>
-    </div>
+      <div id="kilitOrtadan" class="fieldset hidden">
+        <div class="legend">Kilit Seçimi (Ortadan)</div>
+        <div class="grid3">
+          <div>
+            <label>Sağ Kilit</label>
+            <select id="kilitSagO">
+              <option>Klips Kol</option><option>Multi Kilit</option>
+              <option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+            </select>
+          </div>
+          <div>
+            <label>Sol Kilit</label>
+            <select id="kilitSolO">
+              <option>Klips Kol</option><option>Multi Kilit</option>
+              <option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+            </select>
+          </div>
+          <div>
+            <label>Orta Kilit</label>
+            <select id="kilitOrtaO">
+              <option>Klips Kol</option><option>Multi Kilit</option>
+              <option>Anahtarlı Kilit</option><option>İspanyolet Kol</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
-    <hr>
+      <button id="hesaplaBtn" class="btn primary">Hesapla</button>
+      <div id="ozet" class="result hidden"></div>
+    </section>
 
-    <h4>Fiyat Ayarları</h4>
-    <div class="row">
-      <div class="col">
-        <label for="priceAluStd">Alüminyum (₺/kg) — Antrasit</label>
-        <input id="priceAluStd" type="number" step="0.01" placeholder="215">
-      </div>
-      <div class="col">
-        <label for="priceAluRall">Alüminyum (₺/kg) — RALL</label>
-        <input id="priceAluRall" type="number" step="0.01" placeholder="270">
-      </div>
-    </div>
+    <!-- Yönetici -->
+    <section class="card">
+      <h2>Yönetici</h2>
 
-    <div class="row">
-      <div class="col">
-        <label for="priceLabor">İşçilik (₺/m²)</label>
-        <input id="priceLabor" type="number" step="1" placeholder="500">
+      <!-- Giriş kutusu -->
+      <div id="admin-login-box">
+        <div class="grid2">
+          <div>
+            <label>Kullanıcı Adı</label>
+            <input id="adminUser" placeholder="örn. admin" />
+          </div>
+          <div>
+            <label>PIN</label>
+            <input id="adminPin" placeholder="örn. 3482" />
+          </div>
+        </div>
+        <button id="btnAdminLogin" class="btn">Giriş Yap</button>
+        <p class="muted">
+          İlk kurulum için varsayılan yönetici: <strong>admin / 3482</strong><br>
+          Giriş yaptıktan sonra PIN’i değiştirebilir ve yeni yönetici ekleyebilirsiniz.
+        </p>
       </div>
-      <div class="col">
-        <label for="wastePct">Fire (%)</label>
-        <input id="wastePct" type="number" step="0.1" placeholder="15">
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col">
-        <label for="price8Clr">8 mm Şeffaf (₺/m²)</label>
-        <input id="price8Clr" type="number" step="1" placeholder="1050">
-      </div>
-      <div class="col">
-        <label for="price8Smoke">8 mm Füme (₺/m²)</label>
-        <input id="price8Smoke" type="number" step="1" placeholder="1150">
-      </div>
-    </div>
+      <!-- Admin panel (başlangıçta gizli) -->
+      <div id="admin-panel" class="hidden">
+        <div class="toolbar">
+          <div>Giriş: <strong id="whoami"></strong></div>
+          <button id="btnLogout" class="btn outline">Çıkış</button>
+        </div>
 
-    <div class="row">
-      <div class="col">
-        <label for="price20Clr">Çift Şeffaf (₺/m²)</label>
-        <input id="price20Clr" type="number" step="1" placeholder="1600">
-      </div>
-      <div class="col">
-        <label for="price20Smoke">Çift Füme (₺/m²)</label>
-        <input id="price20Smoke" type="number" step="1" placeholder="1750">
-      </div>
-    </div>
+        <h3>Fiyat Ayarları</h3>
+        <div class="grid2">
+          <div>
+            <label>Alüminyum (₺/kg) — Antrasit</label>
+            <input id="priceAluStd" type="number" step="0.01" />
+          </div>
+          <div>
+            <label>Alüminyum (₺/kg) — RALL</label>
+            <input id="priceAluRall" type="number" step="0.01" />
+          </div>
 
-    <div class="row">
-      <button id="btnSavePrices" class="btn btn-primary">Kaydet</button>
-    </div>
+          <div>
+            <label>İşçilik (₺/m²)</label>
+            <input id="priceLabor" type="number" step="0.01" />
+          </div>
+          <div>
+            <label>Fire (%)</label>
+            <input id="wastePct" type="number" step="0.01" />
+          </div>
 
-    <hr>
+          <div>
+            <label>8 mm Şeffaf (₺/m²)</label>
+            <input id="price8Clr" type="number" step="0.01" />
+          </div>
+          <div>
+            <label>8 mm Füme (₺/m²)</label>
+            <input id="price8Smoke" type="number" step="0.01" />
+          </div>
 
-    <h4>Güvenlik</h4>
-    <div class="row">
-      <div class="col">
-        <label for="newPin">PIN Değiştir</label>
-        <input id="newPin" type="password" inputmode="numeric" placeholder="Yeni PIN">
+          <div>
+            <label>Çift Şeffaf (₺/m²)</label>
+            <input id="price20Clr" type="number" step="0.01" />
+          </div>
+          <div>
+            <label>Çift Füme (₺/m²)</label>
+            <input id="price20Smoke" type="number" step="0.01" />
+          </div>
+        </div>
+        <button id="btnSavePrices" class="btn">Kaydet</button>
+
+        <h3>Güvenlik</h3>
+        <div class="grid3">
+          <div>
+            <label>Yeni PIN</label>
+            <input id="newPin" placeholder="Yeni PIN" />
+            <button id="btnChangePin" class="btn small">PIN’i Güncelle</button>
+          </div>
+          <div>
+            <label>Yeni Yönetici — Kullanıcı</label>
+            <input id="newAdminUser" placeholder="kullanıcı" />
+          </div>
+          <div>
+            <label>Yeni Yönetici — PIN</label>
+            <input id="newAdminPin" placeholder="pin" />
+            <button id="btnAddAdmin" class="btn small">Yönetici Ekle</button>
+          </div>
+        </div>
       </div>
-      <div class="col">
-        <label>&nbsp;</label>
-        <button id="btnChangePin" class="btn">PIN’i Güncelle</button>
-      </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="row">
-      <div class="col">
-        <label for="newAdminUser">Yeni Yönetici Adı</label>
-        <input id="newAdminUser" type="text" placeholder="örn. sefa">
-      </div>
-      <div class="col">
-        <label for="newAdminPin">Yeni Yönetici PIN</label>
-        <input id="newAdminPin" type="password" inputmode="numeric" placeholder="örn. 4321">
-      </div>
-    </div>
-    <div class="row">
-      <button id="btnAddAdmin" class="btn">Yönetici Ekle</button>
-    </div>
-
-    <p class="hint">Not: Kesim ve maliyet kırılımları müşteriye gösterilmez.</p>
-  </div>
-</section>
-
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
