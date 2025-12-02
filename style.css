@@ -1,25 +1,62 @@
-:root{
-  --bg:#0f172a; --card:#111827; --muted:#94a3b8; --txt:#e5e7eb;
-  --pri:#2563eb; --pri2:#1d4ed8; --line:#1f2937; --badge:#334155;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 20px;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 system-ui,Segoe UI,Roboto,Arial}
-.container{max-width:1000px;margin:40px auto;padding:0 16px}
-h1{font-size:24px;margin:0 0 16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:16px 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-@media (max-width:720px){.grid2,.grid3{grid-template-columns:1fr}}
-label{display:block;font-weight:600;margin:4px 0}
-input,select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:#0b1220;color:var(--txt)}
-.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:#374151;border:1px solid var(--line);color:var(--txt);cursor:pointer}
-.btn.primary{background:var(--pri);border-color:var(--pri2)}
-.btn.small{padding:6px 10px;font-size:13px}
-.btn.outline{background:transparent;border-color:#334155}
-.badge{margin-top:6px;display:inline-block;background:var(--badge);padding:4px 8px;border-radius:999px;font-size:12px;color:#cbd5e1}
-.muted{color:var(--muted);font-size:13px}
-.fieldset{border:1px solid var(--line);padding:12px;border-radius:10px;margin-top:10px}
-.legend{font-weight:700;margin-bottom:8px}
-.result{margin-top:12px;padding:12px;border:1px dashed #334155;border-radius:8px}
-.hidden{display:none}
-.toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#sonuc {
+    margin-top: 30px;
+    padding: 20px;
+    background: #e9ffe9;
+    border: 1px solid #b2ffb2;
+    border-radius: 6px;
+}
